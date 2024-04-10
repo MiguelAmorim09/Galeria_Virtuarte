@@ -1,29 +1,43 @@
 from tkinter import *
 
 class Obra:
-    def __init__(self, ano, mes, autor, nome, estilo, valor:float, url,  gravar:bool, NomeArquivo):
-        self.ano = ano
-        self.mes = mes
-        self.autor = autor
-        self.nome = nome
-        self.estilo = estilo
-        self.valor = valor
-        self.url = url
+    def __init__(self, gravar:bool, nomeArquivo):
         self.abertoParaGravar = gravar
-        self.arquivo = open(NomeArquivo, 'r')
+        self.arquivo = nomeArquivo
         
     def lerCamposDoArquivo(self):
         if not self.abertoParaGravar:
-            with open('obras.txt', 'r') as arquivo:
-                pass
+            with open(self.arquivo, 'r') as arquivo:
+                self.ano = arquivo.read(4)
+                self.mes = arquivo.read(2)
+                self.autor = arquivo.read(20)
             
-    def gravarCamposNoArquivo(self):
+    def gravarCamposNoArquivo(self, anoDigitado, mesDigitado, autorDigitado, nomeDigitado, estiloDigitado, valorDigitado, urlDigitado):
         if self.abertoParaGravar:
-            with open('obras.txt', 'a') as arquivo:
-                arquivo.write(self.ano)
-                arquivo.write(self.mes)
-                arquivo.write(self.autor)
-                arquivo.write(self.nome)
-                arquivo.write(self.estilo)
-                arquivo.write(self.valor)
-                arquivo.write(self.url)
+            with open(self.arquivo, 'w') as arquivo:
+                arquivo.write(anoDigitado)
+                arquivo.write(mesDigitado)
+                arquivo.write(autorDigitado)
+                arquivo.write(nomeDigitado)
+                arquivo.write(estiloDigitado)
+                arquivo.write(valorDigitado)
+                arquivo.write(urlDigitado)
+
+    def preencherCampos(self, anoDigitado, mesDigitado, autorDigitado, nomeDigitado, estiloDigitado, valorDigitado, urlDigitado):
+        with open(self.arquivo, 'a') as arquivo:
+            arquivo.write(f'\n{anoDigitado}')
+            arquivo.write(mesDigitado)
+            arquivo.write(autorDigitado)
+            arquivo.write(nomeDigitado)
+            arquivo.write(estiloDigitado)
+            arquivo.write(valorDigitado)
+            arquivo.write(urlDigitado)
+
+    def fecharArquivo(self):
+        pass
+
+    def __str__(self):
+        pass
+
+    def compararCom():
+        pass

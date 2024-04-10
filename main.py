@@ -1,12 +1,14 @@
 import os
-from tkinter import*
 import obra
+from tkinter import filedialog as fd
+from tkinter import *
 
 def seletor() -> str:
     print('--Galeria Virtuarte--')
     input('Pressione ENTER para continuar')
     
     print('\n\nCadastrar obra : 1')
+    print('Listagem de obras : 2')
     
     print('\nTerminar : 0')
     
@@ -14,28 +16,89 @@ def seletor() -> str:
     os.system('cls') or None
     return escolha
 
-def realizar(opcaoDesejada:str):
+def realizar(opcaoDesejada:str):  
     def op1():
-        print('--Cadastro de Obras--')
+        def click():
+            global anoDigitado, mesDigitado, autorDigitado, nomeDigitado, estiloDigitado, valorDigitado, urlDigitado
+            anoDigitado = ano.get()
+            mesDigitado = mes.get()
+            autorDigitado = autor.get()
+            nomeDigitado = nome.get()
+            estiloDigitado = estilo.get()
+            valorDigitado = valor.get()
+            urlDigitado = url.get()
+            janela.destroy()
+            cadastro.preencherCampos(anoDigitado, mesDigitado, autorDigitado, nomeDigitado, estiloDigitado, valorDigitado, urlDigitado)
+
+        global janela, ano, mes, autor, nome, estilo, valor, url
+        print('-Cadastro de Obras--')
         input('Pressione ENTER para continuar')
-        ano = input('Insira o ano da obra:')
-        mes = input('Insira o mes da obra:')
-        autor = input('Insira o nome do autor da obra:')
-        nome = input('Insira o nome da obra:')
-        estilo = input('Insira o estilo da obra:')
-        valor = input('Insira o valor estimado da obra:')
-        url = input('Insira a url de uma foto da obra:')
-        aberto = True
-        nomeArquivo = 'obras.txt'
-        cadastro = obra.Obra(ano, mes, autor, nome, estilo, valor, url, aberto, nomeArquivo)
-        cadastro.gravarCamposNoArquivo()
-        
+        gravar = True
+        arquivo = fd.askopenfilename()
+        cadastro = obra.Obra(gravar, arquivo)
+
+        janela = Tk()
+        janela.title('Dados da obra')
+
+        textData = Label(janela, text='Data:')
+        textData.grid(column=0, row=0)
+
+        ano = Entry(janela, width='4')
+        ano.grid(column=1, row=0, sticky='W')
+
+        mes = Entry(janela, width='2')
+        mes.grid(column=1, row=0)
+
+        textAutor = Label(janela, text='Autor:')
+        textAutor.grid(column=0, row=1)
+
+        autor = Entry(janela, width='20')
+        autor.grid(column=1, row=1)
+
+        textNome = Label(janela, text='Nome:')
+        textNome.grid(column=0, row=2)
+
+        nome = Entry(janela, width='20')
+        nome.grid(column=1, row=2, columnspan=2)
+
+        textEstilo = Label(janela, text='Estilo:')
+        textEstilo.grid(column=0, row=3)
+
+        estilo = Entry(janela, width='15')
+        estilo.grid(column=1, row=3, sticky='W')
+
+        textValor = Label(janela, text='Valor:')
+        textValor.grid(column=0, row=4)
+
+        valor = Entry(janela, width='10')
+        valor.grid(column=1, row=4, sticky='W')
+
+        textURL = Label(janela, text='URL:')
+        textURL.grid(column=0, row=5)
+
+        url = Entry(janela, width='20')
+        url.grid(column=1, row=5)
+
+        botao = Button(text='Enviar', command=click)
+        botao.grid(column=1, row=6)
+
+    def op2():
+        print('--Listagem de obras--')
+        input('Pressione ENTER para continuar')
+        gravar = False
+        arquivo = fd.askopenfilename()
+        cadastro = obra.Obra(gravar, arquivo)
+        cadastro.lerCamposDoArquivo()
+        print('Ano\tMês\tNome da Obra\t\tAutor\tValor\tURL')
+        print(cadastro.mes)
+
     match opcaoDesejada:
         case    '1': op1()
+        case    '2': op2()
         
 def principal():
     escolha = 'x'
-    while escolha != '0':
+    while escolha != '0':   
         escolha = seletor()
         if escolha != '0':
             realizar(escolha)
