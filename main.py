@@ -20,15 +20,15 @@ def realizar(opcaoDesejada:str):
     def op1():
         def click():
             global anoDigitado, mesDigitado, autorDigitado, nomeDigitado, estiloDigitado, valorDigitado, urlDigitado
-            anoDigitado = ano.get()
-            mesDigitado = mes.get()
-            autorDigitado = autor.get()
-            nomeDigitado = nome.get()
-            estiloDigitado = estilo.get()
+            anoDigitado = ano.get().ljust(4)
+            mesDigitado = mes.get().ljust(2)
+            autorDigitado = autor.get().ljust(20)
+            nomeDigitado = nome.get().ljust(20)
+            estiloDigitado = estilo.get().ljust(15)
             valorDigitado = valor.get()
-            urlDigitado = url.get()
+            urlDigitado = url.get().ljust(100)
             janela.destroy()
-            cadastro.preencherCampos(anoDigitado, mesDigitado, autorDigitado, nomeDigitado, estiloDigitado, valorDigitado, urlDigitado)
+            cadastro.gravarCamposNoArquivo(anoDigitado, mesDigitado, autorDigitado, nomeDigitado, estiloDigitado, valorDigitado, urlDigitado)
 
         global janela, ano, mes, autor, nome, estilo, valor, url
         print('-Cadastro de Obras--')
@@ -81,6 +81,10 @@ def realizar(opcaoDesejada:str):
 
         botao = Button(text='Enviar', command=click)
         botao.grid(column=1, row=6)
+        janela.mainloop()
+        
+        input('Pressione ENTER para voltar ao seletor')
+        cadastro.fecharArquivo()
 
     def op2():
         print('--Listagem de obras--')
@@ -89,8 +93,10 @@ def realizar(opcaoDesejada:str):
         arquivo = fd.askopenfilename()
         cadastro = obra.Obra(gravar, arquivo)
         cadastro.lerCamposDoArquivo()
-        print('Ano\tMês\tNome da Obra\t\tAutor\tValor\tURL')
-        print(cadastro.mes)
+        cadastro.__str__()
+        linhas = int()
+        for i in range(linhas):
+            print(cadastro.__str__())
 
     match opcaoDesejada:
         case    '1': op1()
