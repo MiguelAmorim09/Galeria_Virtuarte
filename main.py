@@ -7,6 +7,8 @@ def seletor() -> str:
     print('--Galeria Virtuarte--')
     input('Pressione ENTER para continuar')
     
+
+    print('aaaaaa')
     print('\n\nCadastrar obra : 1')
     print('Listagem de obras : 2')
     
