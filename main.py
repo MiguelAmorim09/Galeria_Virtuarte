@@ -1,6 +1,6 @@
 import os
 import obra
-from tkinter import filedialog as fd
+from tkinter import filedialog
 from tkinter import *
 
 def click():
@@ -61,13 +61,23 @@ def janela():
     botao.grid(column=1, row=6)
     janela.mainloop()
 
+def escolherArquivo():
+    global arquivo
+    arquivo = filedialog.askopenfilename(title='Escolher arquivo')
+    
+def janelaArquivo():
+    jArquivo = Tk()
+    botaoArquivo = Button(text='Escolher', command=escolherArquivo)
+    botaoArquivo.pack()
+    jArquivo.mainloop()
+
 def realizar(opcaoDesejada:str):  
     def op1():
         global janela, ano, mes, autor, nome, estilo, valor, url
         print('-Cadastro de Obras--')
         input('Pressione ENTER para continuar')
+        janelaArquivo()
         gravar = True
-        arquivo = fd.askopenfilename()
         cadastro = obra.Obra(gravar, arquivo)
         janela()
         cadastro.gravarCamposNoArquivo(anoDigitado, mesDigitado, autorDigitado, nomeDigitado, estiloDigitado, valorDigitado, urlDigitado)
@@ -78,7 +88,7 @@ def realizar(opcaoDesejada:str):
         print('--Listagem de obras--')
         input('Pressione ENTER para continuar')
         gravar = False
-        arquivo = fd.askopenfilename()
+        arquivo = filedialog.askopenfilename()
         cadastro = obra.Obra(gravar, arquivo)
         cadastro.lerCamposDoArquivo()
         cadastro.__str__()
