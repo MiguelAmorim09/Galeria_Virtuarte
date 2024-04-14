@@ -83,11 +83,11 @@ def realizar(opcaoDesejada:str):
         arquivo = filedialog.askopenfilename(title='Escolher arquivo')
         cadastro = obra.Obra(gravar, arquivo)
         cadastro.ler_campos_do_arquivo()
-        print('Ano\tMes\tNome da Obra\tAutor\tValor\tURL')
-        print(cadastro.linhas)
+        print('Ano Mes Autor\t\t     Nome da Obra\t\t    Estilo\t       Valor   URL')
+        cadastro.__str__()
         
     def op3():
-        os.system('cls') or None
+        os.system('cls') or None    
         print('\t--Relatorio HTML--\t')
         input('Pressione ENTER para continuar')
         gravar = False

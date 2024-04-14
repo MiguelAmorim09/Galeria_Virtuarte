@@ -8,7 +8,7 @@ class Obra:
     def ler_campos_do_arquivo(self):
         if not self.abertoGravar:
             with open(self.arquivo, 'r') as arquivo:
-                self.linhas = arquivo.read()
+                self.linhas = arquivo.readlines()
             
     def gravar_campos_do_arquivo(self):
         if self.abertoGravar:
@@ -20,16 +20,17 @@ class Obra:
         self.anoObra    = ano.ljust(4)
         self.mesObra    = mes.rjust(2, '0')
         self.autorObra  = autor.ljust(20)
-        self.nomeObra   = nome.ljust(20)
+        self.nomeObra   = nome.ljust(30)
         self.estiloObra = estilo.ljust(15)
-        self.valorObra  = valor
+        self.valorObra  = valor.rjust(10)
         self.urlObra    = url.ljust(100)
 
     def fechar_arquivo(self):       #nao achei necessario o fechamento do arquivo,
         pass                        #ja que com with ele se fecha sozinho
 
-    def __str__(self):
-        return f'{self.anoObra} {self.mesObra} {self.nomeObra} {self.autorObra} {self.valorObra} {self.urlObra}'
-
+    def __str__(self) -> str:
+        for linha in self.linhas:
+            print(linha)
+    
     def compararCom(self):
         pass
