@@ -3,6 +3,38 @@ import obra
 from tkinter import * 
 from tkinter import filedialog
 
+def html():
+   with open('obras.html', 'a') as pagina:
+    
+    pagina.write('<!DOCTYPE html>\n')
+    pagina.write('<html lang="en">\n')
+    pagina.write('<head>\n')
+    pagina.write('\t<meta charset="UTF-8">\n')
+    pagina.write('\t<meta name="viewport" content="width=device-width, inital-scale=1.0">\n')
+    pagina.write('\t<title>Document</title>\n')
+    pagina.write('</head>\n')
+    pagina.write('<body>\n')
+    
+    pagina.write    ('\t<table>\n')
+    
+    pagina.write        ('\t\t<tr>\n')
+    pagina.write            ('\t\t\t<th colspan="6">RELATORIO DE OBRAS GALERIA VIRTUAL</th>\n')
+    pagina.write        ('\t\t</tr>\n')
+    
+    pagina.write        ('\t\t<tr>\n')
+    pagina.write            ('\t\t\t<th>Ano/Mes</th>\n')
+    pagina.write            ('\t\t\t<th>Nome</th>\n')
+    pagina.write            ('\t\t\t<th>Estilo</th>\n')
+    pagina.write            ('\t\t\t<th>Autor</th>\n')
+    pagina.write            ('\t\t\t<th>Valor</th>\n')
+    pagina.write            ('\t\t\t<th>Imagem</th>\n')
+    pagina.write        ('\t\t</tr>\n')
+    
+    pagina.write    ('\t</table>\n')
+    
+    pagina.write('</body>\n')
+    pagina.write('</html>\n')
+
 def click(anoDigitado, mesDigitado, autorDigitado, nomeDigitado, estiloDigitado, valorDigitado, urlDigitado):
     global ano, mes, autor, nome, estilo, valor, url
     ano    = anoDigitado.get()
@@ -100,7 +132,6 @@ def realizar(opcaoDesejada:str):
         arquivo = filedialog.askopenfilename(title='Escolher arquivo')
         relatorio = obra.Obra(gravar, arquivo)
         relatorio.ler_campos_do_arquivo()
-        input('Pressione ENTER para continuar')
     
     def op4():
         pass
