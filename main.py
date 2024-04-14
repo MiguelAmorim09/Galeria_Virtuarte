@@ -52,11 +52,12 @@ def dados():
     janela.mainloop()
 
 def seletor():
+    os.system('cls') or None
     print   ('\t--Galeria Virtuarte--\t')
     input   ('Pressione ENTER para continuar')
-    print   ('\n\nCadastrar obra : 1')
-    print   ('Listagem de obras : 2')
-    print   ('Relatorio HTML : 3')
+    print   ('\n\nCadastro de obras de arte : 1')
+    print   ('Listagem de obras de arte : 2')
+    print   ('Página web de obras de arte : 3')
     print   ('Triangulo de Pascal : 4')
     print   ('\nTerminar : 0')
     
@@ -66,34 +67,40 @@ def seletor():
 def realizar(opcaoDesejada:str):
     def op1():
         os.system('cls') or None
-        print('\t--Cadastro de Obras--\t')
-        input('Pressione ENTER para continuar')
+        print   ('\t--Cadastro de Obras--\t')
+        input   ('Pressione ENTER para continuar')
+        os.system('cls') or None
         gravar = True
         arquivo = filedialog.askopenfilename(title='Escolher arquivo')
         cadastro = obra.Obra(gravar, arquivo)
         dados()
         cadastro.preencher_campos(ano, mes, autor, nome, estilo, valor, url)
         cadastro.gravar_campos_do_arquivo()
+        input('Pressione ENTER para continuar')
     
     def op2():
         os.system('cls') or None
-        print('\t--Listagem de obras--\t')
-        input('Pressione ENTER para continuar')
+        print   ('\t--Listagem de obras--\t')
+        input   ('Pressione ENTER para continuar')
+        os.system('cls') or None
         gravar = False
         arquivo = filedialog.askopenfilename(title='Escolher arquivo')
         cadastro = obra.Obra(gravar, arquivo)
         cadastro.ler_campos_do_arquivo()
         print('Ano Mes Autor\t\t     Nome da Obra\t\t    Estilo\t       Valor   URL')
         cadastro.__str__()
+        input('Pressione ENTER para continuar')
         
     def op3():
         os.system('cls') or None    
-        print('\t--Relatorio HTML--\t')
-        input('Pressione ENTER para continuar')
+        print   ('\t--Relatorio HTML--\t')
+        input   ('Pressione ENTER para continuar')
+        os.system('cls') or None
         gravar = False
         arquivo = filedialog.askopenfilename(title='Escolher arquivo')
         relatorio = obra.Obra(gravar, arquivo)
         relatorio.ler_campos_do_arquivo()
+        input('Pressione ENTER para continuar')
     
     def op4():
         pass
@@ -110,8 +117,8 @@ def principal():
         escolha = seletor()
         if escolha != '0':
             realizar(escolha)
-    print('Obrigado por utilizar o programa!')
-    input('Pressione ENTER para terminar')
+    print   ('Obrigado por utilizar o programa!')
+    input   ('Pressione ENTER para terminar')
 
 if __name__ == '__main__':
     os.system('cls') or None
