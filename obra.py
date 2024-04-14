@@ -2,46 +2,34 @@ from tkinter import *
 
 class Obra:
     def __init__(self, gravar:bool, nomeArquivo):
-        self.abertoParaGravar = gravar
-        self.arquivo = nomeArquivo
+        self.abertoGravar = gravar
+        self.arquivo      = nomeArquivo
         
-    def lerCamposDoArquivo(self):
-        if not self.abertoParaGravar:
+    def ler_campos_do_arquivo(self):
+        if not self.abertoGravar:
             with open(self.arquivo, 'r') as arquivo:
-                self.ano = arquivo.read(5)
-                self.mes = arquivo.read(2)
-                self.autor = arquivo.read(20)
-                self.nome = arquivo.read(20)
-                self.estilo = arquivo.read(15)
-                self.valor = arquivo.read(4)
-                self.url = arquivo.read(100)
+                self.linhas = arquivo.read()
             
-    def gravarCamposNoArquivo(self, anoDigitado, mesDigitado, autorDigitado, nomeDigitado, estiloDigitado, valorDigitado, urlDigitado):
-        if self.abertoParaGravar:
-            with open(self.arquivo, 'a') as arquivo:
-                arquivo.write(anoDigitado)
-                arquivo.write(mesDigitado)
-                arquivo.write(autorDigitado)
-                arquivo.write(nomeDigitado)
-                arquivo.write(estiloDigitado)
-                arquivo.write(valorDigitado)
-                arquivo.write(urlDigitado)
+    def gravar_campos_do_arquivo(self):
+        if self.abertoGravar:
+            linha = f'{self.anoObra} {self.mesObra} {self.autorObra} {self.nomeObra} {self.estiloObra} {self.valorObra} {self.urlObra}\n'
+            with open(self.arquivo, 'a', encoding='utf-8') as arquivo:
+                arquivo.write(linha)
 
-    def preencherCampos(self, anoDigitado, mesDigitado, autorDigitado, nomeDigitado, estiloDigitado, valorDigitado, urlDigitado):
-        with open(self.arquivo, 'a') as arquivo:
-            arquivo.write()
-            arquivo.write()
-            arquivo.write()
-            arquivo.write()
-            arquivo.write()
-            arquivo.write()
-            arquivo.write()
+    def preencher_campos(self, ano, mes, autor, nome, estilo, valor, url):
+        self.anoObra    = ano.ljust(4)
+        self.mesObra    = mes.rjust(2, '0')
+        self.autorObra  = autor.ljust(20)
+        self.nomeObra   = nome.ljust(20)
+        self.estiloObra = estilo.ljust(15)
+        self.valorObra  = valor
+        self.urlObra    = url.ljust(100)
 
-    def fecharArquivo(self):
-        self.arquivo.close()
+    def fechar_arquivo(self):       #nao achei necessario o fechamento do arquivo,
+        pass                        #ja que com with ele se fecha sozinho
 
     def __str__(self):
-        return f'{self.ano} {self.mes} {self.nome} {self.autor} {self.valor} {self.url}'
+        return f'{self.anoObra} {self.mesObra} {self.nomeObra} {self.autorObra} {self.valorObra} {self.urlObra}'
 
-    def compararCom():
+    def compararCom(self):
         pass

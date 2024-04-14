@@ -1,27 +1,27 @@
 import os
 import obra
-from tkinter import *
+from tkinter import * 
 from tkinter import filedialog
 
 def click(anoDigitado, mesDigitado, autorDigitado, nomeDigitado, estiloDigitado, valorDigitado, urlDigitado):
     global ano, mes, autor, nome, estilo, valor, url
-    ano = anoDigitado.get().ljust(4)
-    mes = mesDigitado.get().rjust(2, '0')
-    autor = autorDigitado.get().ljust(20)
-    nome = nomeDigitado.get().ljust(20)
-    estilo = estiloDigitado.get().ljust(15)
-    valor = valorDigitado.get()
-    url = urlDigitado.get().ljust(100)
+    ano    = anoDigitado.get()
+    mes    = mesDigitado.get()
+    autor  = autorDigitado.get()
+    nome   = nomeDigitado.get()
+    estilo = estiloDigitado.get()
+    valor  = valorDigitado.get()
+    url    = urlDigitado.get()
     
 def dados():
     janela = Tk()
     
-    textData =   Label(janela, text='Data:')
-    textAutor =  Label(janela, text='Autor:')
-    textNome =   Label(janela, text='Nome:')
-    textEstilo = Label(janela, text='Estilo:')
-    textValor =  Label(janela, text='Valor:')
-    textURL =    Label(janela, text='URL:')
+    textData =   Label  (janela, text='Data:')
+    textAutor =  Label  (janela, text='Autor:')
+    textNome =   Label  (janela, text='Nome:')
+    textEstilo = Label  (janela, text='Estilo:')
+    textValor =  Label  (janela, text='Valor:')
+    textURL =    Label  (janela, text='URL:')
     
     textData.grid   (column=0, row=0)
     textAutor.grid  (column=0, row=1)
@@ -30,13 +30,13 @@ def dados():
     textValor.grid  (column=0, row=4)
     textURL.grid    (column=0, row=5)
     
-    anoDigitado =    Entry(janela, width=4)
-    mesDigitado =    Entry(janela, width=2)
-    autorDigitado =  Entry(janela, width=20)
-    nomeDigitado =   Entry(janela, width=20)
-    estiloDigitado = Entry(janela, width=15)
-    valorDigitado =  Entry(janela, width=10)
-    urlDigitado =    Entry(janela, width=20)
+    anoDigitado    = Entry  (janela, width=4)
+    mesDigitado    = Entry  (janela, width=2)
+    autorDigitado  = Entry  (janela, width=20)
+    nomeDigitado   = Entry  (janela, width=20)
+    estiloDigitado = Entry  (janela, width=15)
+    valorDigitado  = Entry  (janela, width=10)
+    urlDigitado    = Entry  (janela, width=20)
     
     anoDigitado.grid    (column=1, row=0, sticky='W')
     mesDigitado.grid    (column=1, row=0)
@@ -52,11 +52,13 @@ def dados():
     janela.mainloop()
 
 def seletor():
-    print('--Galeria Virtuarte--')
-    input('Pressione ENTER para continuar')
-    print('\n\nCadastrar obra : 1')
-    print('Listagem de obras : 2')
-    print('\nTerminar : 0')
+    print   ('\t--Galeria Virtuarte--\t')
+    input   ('Pressione ENTER para continuar')
+    print   ('\n\nCadastrar obra : 1')
+    print   ('Listagem de obras : 2')
+    print   ('Relatorio HTML : 3')
+    print   ('Triangulo de Pascal : 4')
+    print   ('\nTerminar : 0')
     
     escolha = input('\nDigite sua opcao:')
     return escolha
@@ -64,26 +66,43 @@ def seletor():
 def realizar(opcaoDesejada:str):
     def op1():
         os.system('cls') or None
-        print('--Cadastro de Obras--')
+        print('\t--Cadastro de Obras--\t')
         input('Pressione ENTER para continuar')
         gravar = True
         arquivo = filedialog.askopenfilename(title='Escolher arquivo')
         cadastro = obra.Obra(gravar, arquivo)
         dados()
-        cadastro.gravarCamposNoArquivo(ano, mes, autor, nome, estilo, valor, url)
+        cadastro.preencher_campos(ano, mes, autor, nome, estilo, valor, url)
+        cadastro.gravar_campos_do_arquivo()
     
     def op2():
-        print('--Listagem de obras--')
+        os.system('cls') or None
+        print('\t--Listagem de obras--\t')
         input('Pressione ENTER para continuar')
         gravar = False
-        arquivo = filedialog.askopenfilename()
+        arquivo = filedialog.askopenfilename(title='Escolher arquivo')
         cadastro = obra.Obra(gravar, arquivo)
-        cadastro.lerCamposDoArquivo()
-        cadastro.__str__()
+        cadastro.ler_campos_do_arquivo()
+        print('Ano\tMes\tNome da Obra\tAutor\tValor\tURL')
+        print(cadastro.linhas)
+        
+    def op3():
+        os.system('cls') or None
+        print('\t--Relatorio HTML--\t')
+        input('Pressione ENTER para continuar')
+        gravar = False
+        arquivo = filedialog.askopenfilename(title='Escolher arquivo')
+        relatorio = obra.Obra(gravar, arquivo)
+        relatorio.ler_campos_do_arquivo()
+    
+    def op4():
+        pass
     
     match opcaoDesejada:
         case    '1': op1()
         case    '2': op2()
+        case    '3': op3()
+        case    '4': op4()
 
 def principal():
     escolha = 'x'
