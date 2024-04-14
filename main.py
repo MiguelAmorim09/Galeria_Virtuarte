@@ -1,89 +1,77 @@
 import os
 import obra
-from tkinter import filedialog
 from tkinter import *
+from tkinter import filedialog
 
-def click():
-    global anoDigitado, mesDigitado, autorDigitado, nomeDigitado, estiloDigitado, valorDigitado, urlDigitado
-    anoDigitado = ano.get().ljust(4)
-    mesDigitado = mes.get().ljust(2)
-    autorDigitado = autor.get().ljust(20)
-    nomeDigitado = nome.get().ljust(20)
-    estiloDigitado = estilo.get().ljust(15)
-    valorDigitado = valor.get()
-    urlDigitado = url.get().ljust(100)
-    janela.destroy()
-
-def janela():
+def click(anoDigitado, mesDigitado, autorDigitado, nomeDigitado, estiloDigitado, valorDigitado, urlDigitado):
+    global ano, mes, autor, nome, estilo, valor, url
+    ano = anoDigitado.get().ljust(4)
+    mes = mesDigitado.get().rjust(2, '0')
+    autor = autorDigitado.get().ljust(20)
+    nome = nomeDigitado.get().ljust(20)
+    estilo = estiloDigitado.get().ljust(15)
+    valor = valorDigitado.get()
+    url = urlDigitado.get().ljust(100)
+    
+def dados():
     janela = Tk()
-    janela.title('Dados da obra')
-
-    textData = Label(janela, text='Data:')
-    textData.grid(column=0, row=0)
-
-    ano = Entry(janela, width='4')
-    ano.grid(column=1, row=0, sticky='W')
-
-    mes = Entry(janela, width='2')
-    mes.grid(column=1, row=0)
-
-    textAutor = Label(janela, text='Autor:')
-    textAutor.grid(column=0, row=1)
-
-    autor = Entry(janela, width='20')
-    autor.grid(column=1, row=1)
-
-    textNome = Label(janela, text='Nome:')
-    textNome.grid(column=0, row=2)
-
-    nome = Entry(janela, width='20')
-    nome.grid(column=1, row=2, columnspan=2)
-
+    
+    textData =   Label(janela, text='Data:')
+    textAutor =  Label(janela, text='Autor:')
+    textNome =   Label(janela, text='Nome:')
     textEstilo = Label(janela, text='Estilo:')
-    textEstilo.grid(column=0, row=3)
-
-    estilo = Entry(janela, width='15')
-    estilo.grid(column=1, row=3, sticky='W')
-
-    textValor = Label(janela, text='Valor:')
-    textValor.grid(column=0, row=4)
-
-    valor = Entry(janela, width='10')
-    valor.grid(column=1, row=4, sticky='W')
-
-    textURL = Label(janela, text='URL:')
-    textURL.grid(column=0, row=5)
-
-    url = Entry(janela, width='20')
-    url.grid(column=1, row=5)
-
-    botao = Button(text='Enviar', command=click)
-    botao.grid(column=1, row=6)
+    textValor =  Label(janela, text='Valor:')
+    textURL =    Label(janela, text='URL:')
+    
+    textData.grid   (column=0, row=0)
+    textAutor.grid  (column=0, row=1)
+    textNome.grid   (column=0, row=2)
+    textEstilo.grid (column=0, row=3)
+    textValor.grid  (column=0, row=4)
+    textURL.grid    (column=0, row=5)
+    
+    anoDigitado =    Entry(janela, width=4)
+    mesDigitado =    Entry(janela, width=2)
+    autorDigitado =  Entry(janela, width=20)
+    nomeDigitado =   Entry(janela, width=20)
+    estiloDigitado = Entry(janela, width=15)
+    valorDigitado =  Entry(janela, width=10)
+    urlDigitado =    Entry(janela, width=20)
+    
+    anoDigitado.grid    (column=1, row=0, sticky='W')
+    mesDigitado.grid    (column=1, row=0)
+    autorDigitado.grid  (column=1, row=1)
+    nomeDigitado.grid   (column=1, row=2)
+    estiloDigitado.grid (column=1, row=3, sticky='W')
+    valorDigitado.grid  (column=1, row=4, sticky='W')
+    urlDigitado.grid    (column=1, row=5)
+    
+    botao = Button(janela, text='Enviar', command=lambda: [click(anoDigitado, mesDigitado, autorDigitado, nomeDigitado, estiloDigitado, valorDigitado, urlDigitado), janela.destroy()])
+    botao.grid(column=1, row=6, sticky='W')
+    
     janela.mainloop()
 
-def escolherArquivo():
-    global arquivo
-    arquivo = filedialog.askopenfilename(title='Escolher arquivo')
+def seletor():
+    print('--Galeria Virtuarte--')
+    input('Pressione ENTER para continuar')
+    print('\n\nCadastrar obra : 1')
+    print('Listagem de obras : 2')
+    print('\nTerminar : 0')
     
-def janelaArquivo():
-    jArquivo = Tk()
-    botaoArquivo = Button(text='Escolher', command=escolherArquivo)
-    botaoArquivo.pack()
-    jArquivo.mainloop()
+    escolha = input('\nDigite sua opcao:')
+    return escolha
 
-def realizar(opcaoDesejada:str):  
+def realizar(opcaoDesejada:str):
     def op1():
-        global janela, ano, mes, autor, nome, estilo, valor, url
-        print('-Cadastro de Obras--')
+        os.system('cls') or None
+        print('--Cadastro de Obras--')
         input('Pressione ENTER para continuar')
-        janelaArquivo()
         gravar = True
+        arquivo = filedialog.askopenfilename(title='Escolher arquivo')
         cadastro = obra.Obra(gravar, arquivo)
-        janela()
-        cadastro.gravarCamposNoArquivo(anoDigitado, mesDigitado, autorDigitado, nomeDigitado, estiloDigitado, valorDigitado, urlDigitado)
-        input('Pressione ENTER para voltar ao seletor')
-        cadastro.fecharArquivo()
-
+        dados()
+        cadastro.gravarCamposNoArquivo(ano, mes, autor, nome, estilo, valor, url)
+    
     def op2():
         print('--Listagem de obras--')
         input('Pressione ENTER para continuar')
@@ -92,33 +80,19 @@ def realizar(opcaoDesejada:str):
         cadastro = obra.Obra(gravar, arquivo)
         cadastro.lerCamposDoArquivo()
         cadastro.__str__()
-
+    
     match opcaoDesejada:
         case    '1': op1()
         case    '2': op2()
-        
-def seletor() -> str:
-    print('--Galeria Virtuarte--')
-    input('Pressione ENTER para continuar')
-    
-    print('\n\nCadastrar obra : 1')
-    print('Listagem de obras : 2')
-    
-    print('\nTerminar : 0')
-    
-    escolha = input('\nDigite a opcao desejada:')
-    os.system('cls') or None
-    return escolha
 
 def principal():
     escolha = 'x'
-    while escolha != '0':   
+    while escolha != '0':
         escolha = seletor()
         if escolha != '0':
             realizar(escolha)
-    print('Obrigado por utilizar esse programa!')
-    input('Pressione ENTER para continuar')
-    os.system('cls') or None
+    print('Obrigado por utilizar o programa!')
+    input('Pressione ENTER para terminar')
 
 if __name__ == '__main__':
     os.system('cls') or None
