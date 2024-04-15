@@ -4,7 +4,7 @@ from tkinter import *
 from tkinter import filedialog
 
 def html():
-   with open('obras.html', 'a') as pagina:
+   with open('obras.html', 'w') as pagina:
     
     pagina.write('<!DOCTYPE html>\n')
     pagina.write('<html lang="en">\n')
@@ -119,7 +119,7 @@ def realizar(opcaoDesejada:str):
         arquivo = filedialog.askopenfilename(title='Escolher arquivo')
         cadastro = obra.Obra(gravar, arquivo)
         cadastro.ler_campos_do_arquivo()
-        print('Ano Mes Autor\t\t     Nome da Obra\t\t    Estilo\t       Valor   URL')
+        print('Ano  Mes Autor\t\t      Nome da Obra\t\t     Estilo\t\tValor    URL')
         cadastro.__str__()
         input('Pressione ENTER para continuar')
         

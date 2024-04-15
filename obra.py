@@ -2,13 +2,26 @@ from tkinter import *
 
 class Obra:
     def __init__(self, gravar:bool, nomeArquivo):
+        self.anoObra    = ''
+        self.mesObra    = ''
+        self.autorObra  = ''
+        self.nomeObra   = ''
+        self.estiloObra = ''
+        self.valorObra  = ''
+        self.urlObra    = ''
         self.abertoGravar = gravar
         self.arquivo      = nomeArquivo
         
     def ler_campos_do_arquivo(self):
         if not self.abertoGravar:
             with open(self.arquivo, 'r') as arquivo:
-                self.linhas = arquivo.readlines()
+                self.anoObra    = arquivo.read(4)
+                self.mesObra    = arquivo.read(3)
+                self.autorObra  = arquivo.read(21)
+                self.nomeObra   = arquivo.read(31)
+                self.estiloObra = arquivo.read(16)
+                self.valorObra  = arquivo.read(11)
+                self.urlObra    = arquivo.read(101)
             
     def gravar_campos_do_arquivo(self):
         if self.abertoGravar:
@@ -25,12 +38,11 @@ class Obra:
         self.valorObra  = valor.rjust(10)
         self.urlObra    = url.ljust(100)
 
-    def fechar_arquivo(self):       #nao achei necessario o fechamento do arquivo,
-        pass                        #ja que com with ele se fecha sozinho
+    def fechar_arquivo(self):
+        pass
 
     def __str__(self) -> str:
-        for linha in self.linhas:
-            print(linha)
+        pass
     
     def compararCom(self):
         pass
