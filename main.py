@@ -121,8 +121,6 @@ def realizar(opcaoDesejada:str):
         cadastro.ler_campos_do_arquivo()
         print('Ano  Mes Autor\t\t      Nome da Obra\t\t     Estilo\t\tValor    URL')
         cadastro.__str__()
-        for linha in arquivo:
-            print()
         input('Pressione ENTER para continuar')
         
     def op3():
