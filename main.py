@@ -83,6 +83,46 @@ def dados():
     
     janela.mainloop()
 
+def op1():
+    os.system('cls') or None
+    print   ('\t--Cadastro de Obras--\t')
+    input   ('Pressione ENTER para continuar')
+    os.system('cls') or None
+    gravar = True
+    arquivo = filedialog.askopenfilename(title='Escolher arquivo')
+    cadastro = obra.Obra(gravar, arquivo)
+    dados()
+    cadastro.preencher_campos(ano, mes, autor, nome, estilo, valor, url)
+    cadastro.gravar_campos_do_arquivo()
+    input('Pressione ENTER para continuar')
+    
+def op2():
+    os.system('cls') or None
+    print   ('\t--Listagem de obras--\t')
+    input   ('Pressione ENTER para continuar')
+    os.system('cls') or None
+    gravar = False
+    arquivo = filedialog.askopenfilename(title='Escolher arquivo')
+    cadastro = obra.Obra(gravar, arquivo)
+    cadastro.ler_campos_do_arquivo()
+    print('Ano  Mes Autor\t\t      Nome da Obra\t\t     Estilo\t\tValor    URL')
+    obras = cadastro.__str__()
+    print(obras)
+    input('Pressione ENTER para continuar')
+        
+def op3():
+    os.system('cls') or None    
+    print   ('\t--Relatorio HTML--\t')
+    input   ('Pressione ENTER para continuar')
+    os.system('cls') or None
+    gravar = False
+    arquivo = filedialog.askopenfilename(title='Escolher arquivo')
+    relatorio = obra.Obra(gravar, arquivo)
+    relatorio.ler_campos_do_arquivo()
+    
+def op4():
+    pass
+
 def seletor():
     os.system('cls') or None
     print   ('\t--Galeria Virtuarte--\t')
@@ -94,49 +134,8 @@ def seletor():
     print   ('\nTerminar : 0')
     
     escolha = input('\nDigite sua opcao:')
-    return escolha
-
-def realizar(opcaoDesejada:str):
-    def op1():
-        os.system('cls') or None
-        print   ('\t--Cadastro de Obras--\t')
-        input   ('Pressione ENTER para continuar')
-        os.system('cls') or None
-        gravar = True
-        arquivo = filedialog.askopenfilename(title='Escolher arquivo')
-        cadastro = obra.Obra(gravar, arquivo)
-        dados()
-        cadastro.preencher_campos(ano, mes, autor, nome, estilo, valor, url)
-        cadastro.gravar_campos_do_arquivo()
-        input('Pressione ENTER para continuar')
     
-    def op2():
-        os.system('cls') or None
-        print   ('\t--Listagem de obras--\t')
-        input   ('Pressione ENTER para continuar')
-        os.system('cls') or None
-        gravar = False
-        arquivo = filedialog.askopenfilename(title='Escolher arquivo')
-        cadastro = obra.Obra(gravar, arquivo)
-        cadastro.ler_campos_do_arquivo()
-        print('Ano  Mes Autor\t\t      Nome da Obra\t\t     Estilo\t\tValor    URL')
-        cadastro.__str__()
-        input('Pressione ENTER para continuar')
-        
-    def op3():
-        os.system('cls') or None    
-        print   ('\t--Relatorio HTML--\t')
-        input   ('Pressione ENTER para continuar')
-        os.system('cls') or None
-        gravar = False
-        arquivo = filedialog.askopenfilename(title='Escolher arquivo')
-        relatorio = obra.Obra(gravar, arquivo)
-        relatorio.ler_campos_do_arquivo()
-    
-    def op4():
-        pass
-    
-    match opcaoDesejada:
+    match escolha:
         case    '1': op1()
         case    '2': op2()
         case    '3': op3()
