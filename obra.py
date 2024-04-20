@@ -2,24 +2,23 @@ from tkinter import *
 
 class Obra:
     def __init__(self, gravar:bool, nomeArquivo):
-        self.anoObra    = ''
-        self.mesObra    = ''
-        self.autorObra  = ''
-        self.nomeObra   = ''
-        self.estiloObra = ''
-        self.valorObra  = ''
-        self.urlObra    = ''
         self.abertoGravar = gravar
         self.arquivo      = nomeArquivo
         
     def ler_campos_do_arquivo(self):
         if not self.abertoGravar:
             with open(self.arquivo, 'r') as arquivo:
-                self.linhas = arquivo.readlines()
+                self.anoObra = arquivo.read(4)
+                self.mesObra = arquivo.read(3)
+                self.autorObra = arquivo.read(21)
+                self.nomeObra = arquivo.read(31)
+                self.estiloObra = arquivo.read(16)
+                self.valorObra = arquivo.read(11)
+                self.urlObra = arquivo.read(101)
             
     def gravar_campos_do_arquivo(self):
         if self.abertoGravar:
-            linha = f'{self.anoObra} {self.mesObra} {self.autorObra} {self.nomeObra} {self.estiloObra} {self.valorObra} {self.urlObra}\n'
+            linha = f'{self.anoObra}\t{self.mesObra}\t{self.autorObra}\t{self.nomeObra}\t{self.estiloObra}\t{self.valorObra}\t{self.urlObra}\n'
             with open(self.arquivo, 'a', encoding='utf-8') as arquivo:
                 arquivo.write(linha)
 
@@ -36,8 +35,7 @@ class Obra:
         pass
 
     def __str__(self) -> str:
-        for linha in self.linhas:
-            print(linha)
+        return f'{self.anoObra}{self.mesObra}{self.autorObra}{self.nomeObra}{self.estiloObra}{self.valorObra}{self.urlObra}\n'
             
     def compararCom(self):
         pass
