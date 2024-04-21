@@ -1,4 +1,3 @@
-
 class Matematica:
     def __init__(self, numeroBase):
         self._numeroBase = numeroBase
@@ -20,8 +19,8 @@ class Matematica:
         return triangulo
         
 # Exemplo de uso
-numeroBase = 8
-matematica = Matematica(numeroBase)
-triangulo = matematica.triangulo_de_Pascal()
-for linha in triangulo:
-    print(linha)
+#numeroBase = 8
+#matematica = Matematica(numeroBase)
+#triangulo = matematica.triangulo_de_Pascal()
+#for linha in triangulo:
+    #print(linha)

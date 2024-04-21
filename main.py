@@ -1,15 +1,14 @@
 import os
-import obra
+import obra, mat
 from tkinter import * 
 from tkinter import filedialog    
 import webbrowser
     
 def op1():
-    os.system('cls') or None
     print   ('\t--Cadastro de Obras--\t')
     tecla = input('Presione ENTER para continuar')
-    
     os.system('cls') or None
+    
     gravar = True
     arquivo = filedialog.askopenfilename(title='Escolher arquivo')
     cadastro = obra.Obra(gravar, arquivo)
@@ -30,7 +29,6 @@ def op1():
     os.system('cls') or None
     
 def op2():
-    os.system('cls') or None
     print   ('\t--Listagem de obras--\t')
     tecla = input('Presione ENTER para continuar')
     os.system('cls') or None
@@ -50,7 +48,6 @@ def op2():
     os.system('cls') or None
         
 def op3():
-    os.system('cls') or None    
     print   ('\t--Relatorio HTML--\t')
     tecla = input('Presione ENTER para continuar')
     os.system('cls') or None
@@ -131,7 +128,18 @@ def op3():
     os.system('cls') or None
     
 def op4():
-    pass
+    print('\t--Triangulo Pascal--\t')
+    tecla = input('Pressione ENTER para continuar')
+    os.system('cls') or None
+    
+    numeroBase = int(input('Digite o numero base que deseja:'))
+    pascal = mat.Matematica(numeroBase)
+    triangulo = pascal.triangulo_de_Pascal()
+    os.system('cls') or None
+    print('Seu Triangulo de Pascal:')
+    for linha in triangulo:
+        print(linha)
+    tecla = input('\nPressione ENTER para continuar')
 
 def seletor():
     escolha = 'x'
@@ -144,14 +152,15 @@ def seletor():
         print   ('\nTerminar : 0')
             
         escolha = input('\nDigite sua opcao:')
+        os.system('cls') or None
         match escolha:
             case    '1': op1()
             case    '2': op2()
             case    '3': op3()
+            case    '4': op4()
     print('Obrigado por utilizar o programa!')
     tecla = input('Pressione ENTER para continuar')
 
 if __name__ == '__main__':
     os.system('cls') or None
     seletor()
-    print('cu')
