@@ -154,3 +154,4 @@ def seletor():
 if __name__ == '__main__':
     os.system('cls') or None
     seletor()
+    print('nada')
