@@ -51,7 +51,6 @@ def op3():
     gravar = False
     arquivo = filedialog.askopenfilename(title='Escolher arquivo')
     relatorio = obra.Obra(gravar, arquivo)
-    relatorio.ler_campos_do_arquivo()
     with open('obras.html', 'w') as pagina:
         
         pagina.write('<!DOCTYPE html>\n')
@@ -100,26 +99,17 @@ def op3():
         pagina.write            ('\t\t\t<th>Imagem</th>\n')
         pagina.write        ('\t\t</tr>\n')
         
-        umaLinhaDeDados = "-"
-        while umaLinhaDeDados != "":
-            obras = open(arquivo, "r")
-            umaLinhaDeDados = obras.readline()
-            if umaLinhaDeDados != "":
-                ano     = umaLinhaDeDados[0:4]
-                mes     = umaLinhaDeDados[4:7]
-                nome    = umaLinhaDeDados[28:59]
-                estilo  = umaLinhaDeDados[59:75]
-                autor   = umaLinhaDeDados[7:28]
-                valor   = umaLinhaDeDados[75:86]
-                url     = umaLinhaDeDados[86:186]
-                    
+        with open(arquivo, 'r') as obras:
+            linhas = obras.readlines()
+            for i in linhas:   
+                relatorio.ler_campos_do_arquivo()
                 pagina.write('\t\t<tr>\n')
-                pagina.write    (f'\t\t\t<td>{ano}/{mes}</td>\n')
-                pagina.write    (f'\t\t\t<td>{nome}</td>\n')    
-                pagina.write    (f'\t\t\t<td>{estilo}</td>\n')
-                pagina.write    (f'\t\t\t<td>{autor}</td>\n')
-                pagina.write    (f'\t\t\t<td>{valor}</td>\n')
-                pagina.write    (f'\t\t\t<td><img src="{url}" alt=""></td>\n')
+                pagina.write    (f'\t\t\t<td>{relatorio.anoObra}/{relatorio.mesObra}</td>\n')
+                pagina.write    (f'\t\t\t<td>{relatorio.nomeObra}</td>\n')    
+                pagina.write    (f'\t\t\t<td>{relatorio.estiloObra}</td>\n')
+                pagina.write    (f'\t\t\t<td>{relatorio.autorObra}</td>\n')
+                pagina.write    (f'\t\t\t<td>{relatorio.valorObra}</td>\n')
+                pagina.write    (f'\t\t\t<td><img src="{relatorio.urlObra}" alt=""></td>\n')
                 pagina.write(f'\t\t</tr>\n')
         
         pagina.write    ('\t</table>\n')
