@@ -8,14 +8,23 @@ class Obra:
     def ler_campos_do_arquivo(self):
         if not self.abertoGravar:
             with open(self.arquivo, 'r') as arquivo:
-                linha = arquivo.readline()
-                self.anoObra = linha[0:4].strip()
-                self.mesObra = linha[4:7].strip()
-                self.autorObra = linha[7:28].strip()
-                self.nomeObra = linha[28:59].strip()
-                self.estiloObra = linha[59:75].strip()
-                self.valorObra = linha[75:86].strip()
-                self.urlObra = linha[86:].strip()
+                if not hasattr(self, 'posicao_arquivo'):
+                    self.posicao_arquivo = 0
+                    
+                arquivo.seek(self.posicao_arquivo)
+                
+                umaLinha = arquivo.readline()
+                
+                self.posicao_arquivo = arquivo.tell()
+
+                self.anoObra = umaLinha[0:4].strip()
+                self.mesObra = umaLinha[4:7].strip()
+                self.autorObra = umaLinha[7:28].strip()
+                self.nomeObra = umaLinha[28:59].strip()
+                self.estiloObra = umaLinha[59:75].strip()
+                self.valorObra = umaLinha[75:86].strip()
+                self.urlObra = umaLinha[86:].strip()
+
                 
             
     def gravar_campos_do_arquivo(self):

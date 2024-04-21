@@ -36,15 +36,12 @@ def op2():
     arquivo = filedialog.askopenfilename(title='Escolher arquivo')
     cadastro = obra.Obra(gravar, arquivo)
     print('Ano\tMes\tAutor\t\t\tNome da Obra\t\t\tEstilo\t\tValor\tURL')
-    with open(arquivo, 'r') as linha:
-        contador = linha.readlines()
-        for i in range(1, int(contador)):
+    with open(arquivo, 'r') as obras:
+        linhas = obras.readlines()
+        for i in linhas:
             cadastro.ler_campos_do_arquivo()
-            obras = open(arquivo, "r")
-            umaLinhaDeDados = obras.readline()
-            if umaLinhaDeDados != "":
-                    print(cadastro.__str__())
-            input('Pressione ENTER para continuar')
+            print(cadastro.__str__())
+    tecla = input('Pressione ENTER para continuar')
         
 def op3():
     os.system('cls') or None    
