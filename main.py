@@ -2,6 +2,7 @@ import os
 import obra
 from tkinter import * 
 from tkinter import filedialog    
+import webbrowser
     
 def op1():
     os.system('cls') or None
@@ -19,35 +20,41 @@ def op1():
     autor   = input('Autor da obra:')
     nome    = input('Nome da obra:')
     estilo  = input('Estilo da obra:')
-    valor   = input('Valor da obra')
+    valor   = input('Valor da obra:')
     url     = input('URL da obra:')
     
     cadastro.preencher_campos(ano, mes, autor, nome, estilo, valor, url)
     cadastro.gravar_campos_do_arquivo()
     
     input('Pressione ENTER para continuar')
+    os.system('cls') or None
     
 def op2():
     os.system('cls') or None
     print   ('\t--Listagem de obras--\t')
     tecla = input('Presione ENTER para continuar')
     os.system('cls') or None
+    
     gravar = False
     arquivo = filedialog.askopenfilename(title='Escolher arquivo')
     cadastro = obra.Obra(gravar, arquivo)
-    print('Ano\tMes\tAutor\t\t\tNome da Obra\t\t\tEstilo\t\tValor\tURL')
+    
+    print('Ano\tMes\tAutor\t\t\tNome da Obra\t\t\tEstilo\t\t   Valor\tURL')
     with open(arquivo, 'r') as obras:
         linhas = obras.readlines()
         for i in linhas:
             cadastro.ler_campos_do_arquivo()
             print(cadastro.__str__())
+            
     tecla = input('Pressione ENTER para continuar')
+    os.system('cls') or None
         
 def op3():
     os.system('cls') or None    
     print   ('\t--Relatorio HTML--\t')
     tecla = input('Presione ENTER para continuar')
     os.system('cls') or None
+    
     gravar = False
     arquivo = filedialog.askopenfilename(title='Escolher arquivo')
     relatorio = obra.Obra(gravar, arquivo)
@@ -67,6 +74,7 @@ def op3():
         pagina.write        ('\t\ttable, th, td{\n')
         pagina.write            ('\t\t\tborder: 2px solid black;\n')
         pagina.write            ('\t\t\tborder-collapse: collapse;\n')
+        pagina.write            ('\t\t\tpadding: 5px;\n')
         pagina.write        ('\t\t}\n')
         pagina.write        ('\t\t.titulo{\n')
         pagina.write            ('\t\t\tbackground-color: #20bfee;\n')
@@ -116,12 +124,16 @@ def op3():
         
         pagina.write('</body>\n')
         pagina.write('</html>\n')
+        
+    webbrowser.open("obras.html")
+        
+    tecla = input('Pressione ENTER para continuar')
+    os.system('cls') or None
     
 def op4():
     pass
 
 def seletor():
-    os.system('cls') or None
     escolha = 'x'
     while escolha != '0':
         print   ('\t--Galeria Virtuarte--\t')

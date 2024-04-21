@@ -1,3 +1,8 @@
 1512	10	H. Bosch            	Sete Pecados Capitais         	Medieval       	   2300.00	https://i.pinimg.com/originals/b0/d9/72/b0d9720dccf8f27f6edc7f24143ab078.jpg                        
 1928	05	Tarsila do Amaral   	Abaporu                       	Moderno        	   5000.00	https://cdn.culturagenial.com/imagens/abaporu-2-cke.jpg                                             
-2009	05	Jerci Maccari       	Colhendo Uva II               	Moderno        	   3500.00	https://th.bing.com/th/id/OIP.QRcbbdHOleK6g6r2eD-y0gHaIq?rs=1&pid=ImgDetMain                        
+2009	05	Jerci Maccari       	Colhendo Uva II               	Moderno        	   3500.00	https://th.bing.com/th/id/OIP.QRcbbdHOleK6g6r2eD-y0gHaIq?rs=1&pid=ImgDetMain                          
+1928	08	Tarsila do Amaral   	Antropofagia                  	Moderno        	   5000.00	https://th.bing.com/th/id/R.d348b0f8dbb674a7ce55bb0064e8ac9c?rik=xNH0O3UyJ3KDng&pid=ImgRaw&r=0      
+2013	01	Jerci Maccari       	Santa Ceia                    	Moderno        	   1500.00	https://th.bing.com/th/id/OIP.1MqeeJwZ87xOExtqSzdXFgHaFk?rs=1&pid=ImgDetMain                                            
+1893	xx	Edvard Munch        	O Grito                       	Expressionismo 	 119922500	https://th.bing.com/th/id/OIP.qu0_eR-_6y8AF1lsdq-jAwHaJg?rs=1&pid=ImgDetMain                        
+1847	xx	Alexandre Cabanel   	O Anjo Caido                  	Religiosa      	   1000.00	https://img.getdailyart.com/86520/conversions/img-2017092359c64e43bdddb-iPad.jpg                    
+1510	xx	Michelangelo        	A Criacao de Adao             	Religiosa      	   1000.00	https://cdn.culturagenial.com/imagens/acriacaodeadao-1-cke.jpg                                      

@@ -17,13 +17,13 @@ class Obra:
                 
                 self.posicao_arquivo = arquivo.tell()
 
-                self.anoObra = umaLinha[0:4].strip()
-                self.mesObra = umaLinha[4:7].strip()
-                self.autorObra = umaLinha[7:28].strip()
-                self.nomeObra = umaLinha[28:59].strip()
-                self.estiloObra = umaLinha[59:75].strip()
-                self.valorObra = umaLinha[75:86].strip()
-                self.urlObra = umaLinha[86:].strip()
+                self.anoObra    = umaLinha[0:4]
+                self.mesObra    = umaLinha[4:7]
+                self.autorObra  = umaLinha[7:28]
+                self.nomeObra   = umaLinha[28:59]
+                self.estiloObra = umaLinha[59:75]
+                self.valorObra  = umaLinha[75:86]
+                self.urlObra    = umaLinha[86:]
 
                 
             
@@ -46,7 +46,7 @@ class Obra:
         pass
 
     def __str__(self) -> str:
-        return f'{self.anoObra}\t{self.mesObra}\t{self.autorObra}\t\t{self.nomeObra}\t\t{self.estiloObra}\t{self.valorObra}\t{self.urlObra}\n'
+        return f'{self.anoObra}{self.mesObra}{self.autorObra}{self.nomeObra}{self.estiloObra}{self.valorObra}{self.urlObra}\n'
             
     def compararCom(self):
         pass
