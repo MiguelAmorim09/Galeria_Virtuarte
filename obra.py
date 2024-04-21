@@ -8,13 +8,15 @@ class Obra:
     def ler_campos_do_arquivo(self):
         if not self.abertoGravar:
             with open(self.arquivo, 'r') as arquivo:
-                self.anoObra = arquivo.read(4)
-                self.mesObra = arquivo.read(3)
-                self.autorObra = arquivo.read(21)
-                self.nomeObra = arquivo.read(31)
-                self.estiloObra = arquivo.read(16)
-                self.valorObra = arquivo.read(11)
-                self.urlObra = arquivo.read(101)
+                linha = arquivo.readline()
+                self.anoObra = linha[0:4].strip()
+                self.mesObra = linha[4:7].strip()
+                self.autorObra = linha[7:28].strip()
+                self.nomeObra = linha[28:59].strip()
+                self.estiloObra = linha[59:75].strip()
+                self.valorObra = linha[75:86].strip()
+                self.urlObra = linha[86:].strip()
+                
             
     def gravar_campos_do_arquivo(self):
         if self.abertoGravar:
@@ -35,7 +37,7 @@ class Obra:
         pass
 
     def __str__(self) -> str:
-        return f'{self.anoObra}{self.mesObra}{self.autorObra}{self.nomeObra}{self.estiloObra}{self.valorObra}{self.urlObra}\n'
+        return f'{self.anoObra}\t{self.mesObra}\t{self.autorObra}\t\t{self.nomeObra}\t\t{self.estiloObra}\t{self.valorObra}\t{self.urlObra}\n'
             
     def compararCom(self):
         pass

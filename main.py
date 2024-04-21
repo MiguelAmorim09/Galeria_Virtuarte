@@ -35,10 +35,16 @@ def op2():
     gravar = False
     arquivo = filedialog.askopenfilename(title='Escolher arquivo')
     cadastro = obra.Obra(gravar, arquivo)
-    print('Ano\tMes\tAutor\t\t\tNome da Obra\t\t\tEstilo\t\t   Valor\tURL')
-    cadastro.ler_campos_do_arquivo()
-    print(cadastro.__str__())
-    input('Pressione ENTER para continuar')
+    print('Ano\tMes\tAutor\t\t\tNome da Obra\t\t\tEstilo\t\tValor\tURL')
+    with open(arquivo, 'r') as linha:
+        contador = linha.readlines()
+        for i in range(1, int(contador)):
+            cadastro.ler_campos_do_arquivo()
+            obras = open(arquivo, "r")
+            umaLinhaDeDados = obras.readline()
+            if umaLinhaDeDados != "":
+                    print(cadastro.__str__())
+            input('Pressione ENTER para continuar')
         
 def op3():
     os.system('cls') or None    
@@ -71,6 +77,12 @@ def op3():
         pagina.write        ('\t\t}\n')
         pagina.write        ('\t\t.legenda{\n')
         pagina.write            ('\t\t\tbackground-color: #41cbd2;\n')
+        pagina.write        ('\t\t}\n')
+        pagina.write        ('\t\ttr:nth-child(2n+3){\n')
+        pagina.write            ('\t\t\tbackground-color: #bce989;\n')
+        pagina.write        ('\t\t}\n')
+        pagina.write        ('\t\ttable{\n')
+        pagina.write            ('\t\t\tmargin: auto;\n')
         pagina.write        ('\t\t}\n')
         pagina.write    ('\t</style>\n')
         pagina.write('</head>\n')
