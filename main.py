@@ -54,23 +54,35 @@ def op3():
         pagina.write('<!DOCTYPE html>\n')
         pagina.write('<html lang="en">\n')
         pagina.write('<head>\n')
-        pagina.write('\t<meta charset="UTF-8">\n')
-        pagina.write('\t<meta name="viewport" content="width=device-width, inital-scale=1.0">\n')
-        pagina.write('\t<title>Document</title>\n')
-        pagina.write('\t<style>\n')
-        pagina.write('\t\timg{width: 100px; height: 100px}\n')
-        pagina.write('\t\ttable, th, td{border: 2px solid black; border-collapse: collapse;}\n')
-        pagina.write('\t</style>\n')
+        pagina.write    ('\t<meta charset="UTF-8">\n')
+        pagina.write    ('\t<meta name="viewport" content="width=device-width, inital-scale=1.0">\n')
+        pagina.write    ('\t<title>Document</title>\n')
+        pagina.write    ('\t<style>\n')
+        pagina.write        ('\t\timg{\n')
+        pagina.write            ('\t\t\twidth: 100px;\n')
+        pagina.write            ('\t\t\theight: 100px\n')
+        pagina.write        ('\t\t}\n')
+        pagina.write        ('\t\ttable, th, td{\n')
+        pagina.write            ('\t\t\tborder: 2px solid black;\n')
+        pagina.write            ('\t\t\tborder-collapse: collapse;\n')
+        pagina.write        ('\t\t}\n')
+        pagina.write        ('\t\t.titulo{\n')
+        pagina.write            ('\t\t\tbackground-color: #20bfee;\n')
+        pagina.write        ('\t\t}\n')
+        pagina.write        ('\t\t.legenda{\n')
+        pagina.write            ('\t\t\tbackground-color: #41cbd2;\n')
+        pagina.write        ('\t\t}\n')
+        pagina.write    ('\t</style>\n')
         pagina.write('</head>\n')
         pagina.write('<body>\n')
         
         pagina.write    ('\t<table>\n')
         
-        pagina.write        ('\t\t<tr>\n')
+        pagina.write        ('\t\t<tr class="titulo">\n')
         pagina.write            ('\t\t\t<th colspan="6">RELATORIO DE OBRAS GALERIA VIRTUAL</th>\n')
         pagina.write        ('\t\t</tr>\n')
 
-        pagina.write        ('\t\t<tr>\n')
+        pagina.write        ('\t\t<tr class="legenda">\n')
         pagina.write            ('\t\t\t<th>Ano/Mes</th>\n')
         pagina.write            ('\t\t\t<th>Nome</th>\n')
         pagina.write            ('\t\t\t<th>Estilo</th>\n')
@@ -79,18 +91,18 @@ def op3():
         pagina.write            ('\t\t\t<th>Imagem</th>\n')
         pagina.write        ('\t\t</tr>\n')
         
-        umaLinhaDeDados = '-'
-        while umaLinhaDeDados != '':
-            with open(arquivo, 'r') as obras:
-                umaLinhaDeDados = obras.readline()
-            if umaLinhaDeDados != '':
+        umaLinhaDeDados = "-"
+        while umaLinhaDeDados != "":
+            obras = open(arquivo, "r")
+            umaLinhaDeDados = obras.readline()
+            if umaLinhaDeDados != "":
                 ano     = umaLinhaDeDados[0:4]
                 mes     = umaLinhaDeDados[4:7]
                 nome    = umaLinhaDeDados[28:59]
                 estilo  = umaLinhaDeDados[59:75]
                 autor   = umaLinhaDeDados[7:28]
                 valor   = umaLinhaDeDados[75:86]
-                url     = umaLinhaDeDados[86:]
+                url     = umaLinhaDeDados[86:186]
                     
                 pagina.write('\t\t<tr>\n')
                 pagina.write    (f'\t\t\t<td>{ano}/{mes}</td>\n')
@@ -99,7 +111,7 @@ def op3():
                 pagina.write    (f'\t\t\t<td>{autor}</td>\n')
                 pagina.write    (f'\t\t\t<td>{valor}</td>\n')
                 pagina.write    (f'\t\t\t<td><img src="{url}" alt=""></td>\n')
-                pagina.write(f'\t\t</tr>')
+                pagina.write(f'\t\t</tr>\n')
         
         pagina.write    ('\t</table>\n')
         
