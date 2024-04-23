@@ -43,7 +43,7 @@ class Obra:
         self.urlObra    = url.ljust(100)
 
     def fechar_arquivo(self):
-        pass
+        self.arquivo.close()
 
     def __str__(self) -> str:
         return f'{self.anoObra}{self.mesObra}{self.autorObra}{self.nomeObra}{self.estiloObra}{self.valorObra}{self.urlObra}\n'

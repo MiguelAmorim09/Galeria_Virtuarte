@@ -5,7 +5,7 @@ from tkinter import filedialog
 import webbrowser
     
 def op1():
-    print   ('\t--Cadastro de Obras--\t')
+    print('\t--Cadastro de Obras--\t')
     tecla = input('Presione ENTER para continuar')
     os.system('cls') or None
     
@@ -65,8 +65,8 @@ def op3():
         pagina.write    ('\t<title>Document</title>\n')
         pagina.write    ('\t<style>\n')
         pagina.write        ('\t\timg{\n')
-        pagina.write            ('\t\t\twidth: 100px;\n')
-        pagina.write            ('\t\t\theight: 100px\n')
+        pagina.write            ('\t\t\twidth: 200px;\n')
+        pagina.write            ('\t\t\theight: 200px\n')
         pagina.write        ('\t\t}\n')
         pagina.write        ('\t\ttable, th, td{\n')
         pagina.write            ('\t\t\tborder: 2px solid black;\n')
@@ -82,8 +82,13 @@ def op3():
         pagina.write        ('\t\ttr:nth-child(2n+3){\n')
         pagina.write            ('\t\t\tbackground-color: #bce989;\n')
         pagina.write        ('\t\t}\n')
+        pagina.write        ('\t\ttd{\n')
+        pagina.write            ('\t\t\tfont-family: "Times New Roman", Times, serif;\n')
+        pagina.write            ('\t\t\tfont-size: larger;\n')
+        pagina.write        ('\t\t}\n')
         pagina.write        ('\t\ttable{\n')
         pagina.write            ('\t\t\tmargin: auto;\n')
+        pagina.write            ('\t\t\twidth: 850px;\n')
         pagina.write        ('\t\t}\n')
         pagina.write    ('\t</style>\n')
         pagina.write('</head>\n')
@@ -158,7 +163,8 @@ def seletor():
             case    '2': op2()
             case    '3': op3()
             case    '4': op4()
-    print('Obrigado por utilizar o programa!')
+    print('Obrigado por utilizar o programa!\n')
+    print('Feito por Miguel Amorim e Pietro Amaral - 1o INFO\n\n')
     tecla = input('Pressione ENTER para continuar')
 
 if __name__ == '__main__':
